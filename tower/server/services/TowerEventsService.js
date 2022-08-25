@@ -2,24 +2,25 @@ import { dbContext } from "../db/DbContext"
 import { BadRequest, Forbidden } from "../utils/Errors"
 
 class TowerEventsService {
-    async editTowerEvent(id, eventData) {
-      let event = await this.getById(id)
-
+    async editTowerEvent(id, eventData, userId) {
+      const event = await this.getById(id)
+      if(event.creatorId != userId){
+        throw new Forbidden('You can not Remove that silly')
+      }
+      if(event.isCanceled != false){
+        throw new BadRequest('Event Cancelled....Sorry')
+      }
       event.name = eventData.name || event.name
       event.description = eventData.description  || event.description
       event.coverImg = eventData.coverImg  || event.coverImg
       event.location = eventData.location  || event.location
       event.capacity = eventData.capacity  || event.capacity
       event.startDate = eventData.startDate  || event.startDate
-      // event.isCanceled = eventData.isCanceled  || event.isCanceled
-      event.type = eventData.type || event.type
+      // event.isCanceled = event.isCanceled  || event.isCanceled
+      event.type = event.type || event.type
 
-      if(event.isCanceled){
-        throw new BadRequest('Event Cancelled....Sorry')
-      }
-
-      await event.save()
-      return event
+      event.save()
+      return eventData
     }
 
     async getAll() {
