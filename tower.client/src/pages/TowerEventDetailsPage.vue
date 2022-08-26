@@ -104,6 +104,7 @@ export default {
       towerEvent: computed(() => AppState.activeTowerEvent),
       comments: computed(() => AppState.comments),
       ticketProfiles: computed(() => AppState.ticketProfiles),
+      myTicketEvents: computed(() => AppState.ticketEvents),
       reserved: computed(()=> {
         if (AppState.ticketProfiles.find(t => t.accountId == AppState.account.id)) {
           return true

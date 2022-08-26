@@ -15,6 +15,12 @@ class TicketsService{
         AppState.ticketProfiles = res.data
     }
 
+    async getEventTickets(){
+        const res = await api.get('account/tickets')
+        logger.log('getting eventTickets in the ticket service', res.data)
+        AppState.ticketEvents = res.data
+    }
+
     async removeTicket(ticketId){
         const res = await api.delete('api/tickets/'+ticketId)
         logger.log('removing ticket from the service', res.data)

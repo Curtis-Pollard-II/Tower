@@ -12,6 +12,8 @@ export const AppState = reactive({
 
   ticketProfiles: [],
 
+  ticketEvents: [],
+
   comments: [],
 
 

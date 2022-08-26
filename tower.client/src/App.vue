@@ -6,9 +6,6 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-secondary text-light text-center p-4">
-     
-    </div>
   </footer>
 </template>
 
@@ -20,7 +17,8 @@ export default {
   name: 'App',
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      
     }
   }
 }
