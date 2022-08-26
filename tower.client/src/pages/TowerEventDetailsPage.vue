@@ -28,11 +28,11 @@
   </div>
 
   <div class="container p-3">
-    <CommentForm />
+    <comment-form/>
   </div>
 
   <div class="container">
-    <CommentCard :comment="c" v-for="(c, i) in comments" :key="c.id" />
+    <comment-card :comment="c" v-for="(c, i) in comments" :key="c.id" />
   </div>
 
   
@@ -46,7 +46,10 @@ import { ticketsService } from '../services/TicketsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 import { AppState } from '../AppState.js';
+import CommentForm from '../components/CommentForm.vue';
+import CommentCard from '../components/CommentCard.vue';
 export default {
+  components: { CommentForm, CommentCard },
   setup() {
    
     const route = useRoute();

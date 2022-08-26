@@ -12,7 +12,7 @@ export const AppState = reactive({
 
   ticketProfiles: [],
 
-  comments: {},
+  comments: [],
 
 
 })

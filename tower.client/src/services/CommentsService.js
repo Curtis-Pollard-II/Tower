@@ -6,8 +6,8 @@ class CommentsService{
 
     async createComment(newComment){
       const res = await api.post('api/comments', newComment)
-      logger.log('CREATED PICTURE', res.data)
-      AppState.comment.push(res.data)
+      logger.log('Created Comment', res.data)
+      AppState.comments.push(res.data)
     }
 }
 
