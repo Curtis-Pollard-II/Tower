@@ -1,8 +1,12 @@
 <template>
 
+<div>
+  <EventForm />
+</div>
+
 <div class="row bg-primary py-1 px-5 text-danger">
       <div class="col-12">
-        <h1 class="text-center">Event Types</h1>
+        <h1 class="text-center">Browse Events</h1>
       </div>
       <div class=" text-center fs-5 col-12 text-dark mdi mdi-filter-variant">
         filter <i class="mdi mdi-filter-variant"></i>
