@@ -54,16 +54,19 @@ import { ref } from '@vue/reactivity';
 import { towerEventsService } from '../services/TowerEventsService';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
+import { useRouter } from 'vue-router';
 export default {
   setup() {
+    const router = useRouter()
     const editable = ref({})
     return {
       editable,
       async handleSubmit() {
         try {
           logger.log('creating event from component form', editable.value)
-          await towerEventsService.createEvent(editable.value)
+          const tEvent = await towerEventsService.createEvent(editable.value)
           editable.value = {}
+          router.push( {name: 'TowerEventDetails', params: {eventId: tEvent.id}} )
           Pop.toast('Event Created!')
         } catch (error) {
           Pop.error(error)

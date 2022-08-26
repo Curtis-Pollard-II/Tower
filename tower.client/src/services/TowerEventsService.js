@@ -8,6 +8,7 @@ class TowerEventsService{
         const res = await api.post('api/events', newEvent)
         logger.log('Creating New Event in Service', res.data)
         AppState.towerEvent.unshift(res.data)
+        return res.data
 
 
     }
@@ -23,6 +24,12 @@ class TowerEventsService{
         AppState.activeTowerEvent = res.data
     }
 
+    async removeEvent(eventId){
+        const res = await api.delete('api/events/'+ eventId)
+        logger.log('removing event from the service', res.data )
+        return res.data
+        // AppState.activeTowerEvent = AppState.activeTowerEvent.filter(e => e.id != eventId)
+    }
 
 }
 
