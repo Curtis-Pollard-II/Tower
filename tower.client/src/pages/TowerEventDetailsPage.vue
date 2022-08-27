@@ -54,7 +54,7 @@
 
 <script>
 import { computed, onMounted, ref } from '@vue/runtime-core';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { towerEventsService } from '../services/TowerEventsService';
 import { ticketsService } from '../services/TicketsService';
 import { logger } from '../utils/Logger';
@@ -63,10 +63,11 @@ import { AppState } from '../AppState.js';
 import CommentForm from '../components/CommentForm.vue';
 import CommentCard from '../components/CommentCard.vue';
 import { commentsService } from '../services/CommentsService';
+import { router } from '../router';
 export default {
   components: { CommentForm, CommentCard },
   setup() {
-   
+    const router = useRouter()
     const route = useRoute();
     async function getTowerEventById() {
       try {
@@ -111,10 +112,11 @@ export default {
         }
         return false
       }),
-
       async deleteEvent(){
         try {
-          await towerEventsService.removeEvent(route.params.eventId)
+          if(await towerEventsService.removeEvent(route.params.eventId)){
+            router.push({name: 'Home'})
+          }
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
